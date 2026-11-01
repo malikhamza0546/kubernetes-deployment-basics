@@ -1,0 +1,22 @@
+Imperative command Approach 
+
+$ kubectl config get-clusters 
+
+$ kubectl config get-contexts
+
+$ kubectl get  pods
+
+export MY_NAMESPACE=sn-labs-$USERNAME
+
+echo $MY_NAMESPACE
+
+docker build -t us.icr.io/$My_NameSpace/hello-world:1
+
+docker push us.icr.io/$My_NameSpace/hello-world:1
+
+ibmcloud cr images
+
+kubectl run hello-world --image us.icr.io/$My_NameSpace/hello-world:1 --overrides='{"spec":{"template":{"spec":{"imagePullSecrets":[{"name":"icr"}]}}}}'
+pod/hello-world created
+
+kubectl get pods
