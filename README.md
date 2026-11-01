@@ -152,19 +152,25 @@ kubectl logs <POD_NAME>
 kubectl delete deployment/hello-world service/hello-world
 ```
 
-## 📂 Project Structure
+
+## 📁 Project Structure
 
 ```text
-kubernetes-deployment-basics/
+.
+├── Deployment/
+│   └── kubernetes_declarative_approach.yaml
 │
-├── Dockerfile
-├── app.js
-├── package.json
+├── Pods/
+│   ├── Kubernetes_pods.yaml
+│   └── imperative_commands_Kubernets.txt
 │
-├── hello-world-create.yaml
-├── hello-world-apply.yaml
+├── Services/
+│   └── Kubernetes_services.yaml
 │
-└── README.md
+├── Dockerfile.txt
+├── Package.json
+├── README.md
+└── app.js
 ```
 
 *The YAML files demonstrate different approaches to creating and managing Kubernetes resources.*
