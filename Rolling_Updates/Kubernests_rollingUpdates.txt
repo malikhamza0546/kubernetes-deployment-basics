@@ -1,0 +1,22 @@
+Now build a new Docker image for version 2 with new changes.
+
+Run this in the terminal that is NOT running kubectl proxy:
+docker build -t us.icr.io/$MY_NAMESPACE/hello-world:2 . && docker push us.icr.io/$MY_NAMESPACE/hello-world:2
+
+Update your Kubernetes Deployment
+Now comes the important part. Below command will check the name of the deployment where you want to make change and give the new version of the image to that deployment 
+
+kubectl set image deployment/hello-world hello-world=us.icr.io/$MY_NAMESPACE/hello-world:2
+
+
+Get a status of the rolling update by using the following command:
+
+kubectl rollout status deployment/hello-world
+
+Ping your application to ensure that the new welcome message is displayed.
+curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy
+
+You will get the status of your version 2 of the application
+
+You can roll back to you previous version as well
+kubectl rollout undo deployment/hello-world

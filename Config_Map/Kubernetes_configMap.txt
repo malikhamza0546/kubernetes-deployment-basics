@@ -1,0 +1,50 @@
+A ConfigMap is a Kubernetes object used to store configuration data separately from your application code.
+
+For example, imagine your Node.js application displays this message:
+res.send('Welcome to ' + hostname + '! Your app is up and running!\n')
+
+
+The message is hardcoded into your application.
+
+If you want to change it, you normally need to:
+1. Change the code.
+2. Build a new Docker image.
+3. Push the image to the Container Registry.
+4. Update your Kubernetes Deployment.
+A ConfigMap gives you another approach: store the message outside the application code.
+
+To create Configuration:
+
+kubectl create configmap app-config --from-literal=MESSAGE="This message came from a ConfigMap!"
+
+
+To verify:
+kubectl get configmaps
+
+Now got to yaml file to see that app-config is present fro that docker image 
+
+And then you can access it anywhere inside the application using this code 
+res.send(process.env.MESSAGE + '\n')
+
+Now Build and Push the Image Again with the new changes:
+
+Apply the new deployment 
+kubectl apply -f deployment-configmap-env-var.yaml
+
+Check th deployment using this command:
+kubectl get deployments
+
+Send a request to your application
+Run this command in your terminal:
+curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy
+
+
+What I accomplished
+1. Created a ConfigMap named app-config inside my Kubernetes cluster.
+2. Configured my Deployment YAML file to reference the ConfigMap.
+3. Modified app.js to read the environment variable using process.env.MESSAGE.
+4. Built and pushed Docker image version 3 to IBM Container Registry.
+5. Applied the updated Deployment configuration using kubectl apply.
+6. Successfully tested my application and received the response:
+
+

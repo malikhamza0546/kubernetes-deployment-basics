@@ -1,0 +1,28 @@
+Kubernetes concept: Horizontal Pod Autoscaler (HPA)
+
+Firstly we will update the yaml file of the deployment:
+containers:
+  - name: hello-world
+    image: us.icr.io/<my_namespace>/hello-world:3
+    ports:
+      - containerPort: 8080
+        name: http
+    resources:
+      limits:
+        cpu: 50m
+      requests:
+        cpu: 20m
+
+Why do we need this?
+
+The HPA uses CPU utilization relative to the CPU request to calculate whether it should scale the number of Pods.
+
+Now apply the new deployment changes to Kubernetes:
+kubectl apply -f deployment.yaml
+
+Now we're going to create the HPA for your hello-world Deployment.
+- HPA monitors CPU utilization and adjusts the number of Pods automatically.
+kubectl autoscale deployment hello-world --cpu-percent=5 --min=1 --max=10
+
+Now send multiple requests to the user:
+for i in `seq 100000`; do curl -L localhost:8001/api/v1/namespaces/sn-labs-$USERNAME/services/hello-world/proxy; done
