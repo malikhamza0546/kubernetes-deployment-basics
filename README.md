@@ -90,6 +90,38 @@ The Deployment maintains the desired number of application replicas, while the S
 - Observed different Pod hostnames responding to requests.
 - Explored how Kubernetes Service networking distributes connections across available Pod endpoints.
 
+### 6. Additional Kubernetes Configurations
+
+Explored additional Kubernetes configuration and workload management concepts through practical command-line exercises.
+
+###  Rolling Updates: 
+Practised updating application versions and managing Deployment rollout operations.
+
+### Auto Scaling: 
+Explored Kubernetes workload scaling configurations.
+
+### ConfigMaps: 
+Practised creating and managing ConfigMaps to store application configuration separately from container images.
+
+###  Horizontal Pod Autoscaler (HPA): 
+Explored configuring automatic Pod scaling based on resource utilisation.
+
+The repository includes command references and practical instructions used to create, configure, inspect, and manage these Kubernetes resources.
+
+### Related files:
+
+Rolling_Updates/
+└── Kubernests_rollingUpdates.txt
+
+Auto_Scaling/
+└── Kubernetes_autoScaling.txt
+
+Config_Map/
+└── Kubernetes_configMap.txt
+
+Horizantal_Auto_Scaling/
+└── Kubernetes_Horizontal_Pod_Autoscaler.txt
+
 ## 💻 Useful Kubernetes Commands
 
 **Create a Pod**
